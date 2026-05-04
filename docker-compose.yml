@@ -1,0 +1,23 @@
+services:
+  web:
+    image: nginx
+    container_name: campus_web
+    ports:
+      - "8080:80"
+
+  db:
+    image: mysql:8
+    container_name: campus_db
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: campusconfess
+    ports:
+      - "3306:3306"
+
+  cdn:
+    image: nginx
+    container_name: campus_cdn
+    ports:
+      - "8081:80"
+    volumes:
+      - ./cdn:/usr/share/nginx/html
